@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import '@/styles/globals.css';
 import '@/styles/vendors/menu.css';
+import { GTM_SCRIPT } from '@/lib/gtm-script';
 
 const DMSans = localFont({
   src: '../fonts/DMSans-Bold.woff2',
@@ -56,10 +57,20 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang='en'>
+      <head>
+        <Script id="google-tag-manager" strategy="afterInteractive">
+          {GTM_SCRIPT(process.env.GTM_ID)}
+        </Script>
+      </head>
       <body
         className={`${DMSans.variable} ${ClashDisplay.variable} ${Raleway.variable} ${SpaceGrotesk.variable} ${inter.variable}`}
       >
         {children}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${process.env.GTM_ID}" height="0" width="0" style="display: none; visibility: hidden;"></iframe>`,
+          }}
+        />
       </body>
     </html>
   );
