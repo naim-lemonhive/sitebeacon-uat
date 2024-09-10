@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import localFont from 'next/font/local';
 import { Inter } from 'next/font/google';
 import JOS from 'jos-animation';
+import Script from "next/script";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import '@/styles/globals.css';
